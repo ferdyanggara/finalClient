@@ -9,12 +9,19 @@ import * as Font from 'expo-font'
 import cartReducer from './store/reducers/cart'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider as PaperProvider } from 'react-native-paper'
+import thunk from 'redux-thunk'
 const rootReducer = combineReducers({
     products: productsReducer,
     cart: cartReducer,
 })
 
-const store = createStore(rootReducer, composeWithDevTools())
+const middleware = [thunk]
+// const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
+
+const store = createStore(
+    rootReducer,
+    composeWithDevTools(applyMiddleware(...middleware))
+)
 
 // const fetchFonts = () => {
 //     return Font.loadAsync({

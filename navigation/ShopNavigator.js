@@ -7,6 +7,7 @@ import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen'
 import CartScreen from '../screens/shop/CartScreen'
+import AuthScreen from '../screens/user/AuthScreen'
 // import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 const defaultNavOptions = {
@@ -37,6 +38,13 @@ const ShopNavigator = () => {
                 screenOptions={defaultNavOptions}
                 initialRouteName="ProductOverview"
             >
+                <Stack.Screen
+                    name="AuthScreen"
+                    component={AuthScreen}
+                    options={{
+                        headerTitle: 'Authentication',
+                    }}
+                />
                 <Stack.Screen
                     name="ProductOverview"
                     component={ProductOverview}
