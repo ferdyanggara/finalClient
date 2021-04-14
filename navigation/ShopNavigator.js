@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
-import ProductOverview from '../screens/shop/ProductOverviewScreen'
 import { View, Text, Button, ActivityIndicator } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
-import ProductDetailScreen from '../screens/shop/ProductDetailScreen'
-import CartScreen from '../screens/shop/CartScreen'
-import AuthScreen from '../screens/user/AuthScreen'
-import SplashScreen from '../screens/user/SplashScreen'
-import SignInScreen from '../screens/user/SignInScreen'
+import ShopScreen from '../screens/shop/ShopScreen'
+import DrawerContent from '../screens/shop/DrawerContent'
+
+// import AuthScreen from '../screens/user/AuthScreen'
+
 import AsyncStorage from '@react-native-community/async-storage'
 import { AuthContext } from '../components/context'
 import {
@@ -21,20 +20,24 @@ import {
     DefaultTheme as NavigationDefaultTheme,
     DarkTheme as NavigationDarkTheme,
 } from '@react-navigation/native'
+import RootStackScreen from '../screens/user/RootStackScreen'
+// import ShopDrawerScreen from '../screens/shop/DrawerScreen'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+
 // import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-const defaultNavOptions = {
-    headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : '',
-    },
-    headerTitleStyle: {
-        fontFamily: 'open-sans-bold',
-    },
-    headerBackTitleStyle: {
-        fontFamily: 'open-sans',
-    },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
-}
+// const defaultNavOptions = {
+//     headerStyle: {
+//         backgroundColor: Platform.OS === 'android' ? Colors.primary : '',
+//     },
+//     headerTitleStyle: {
+//         fontFamily: 'open-sans-bold',
+//     },
+//     headerBackTitleStyle: {
+//         fontFamily: 'open-sans',
+//     },
+//     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
+// }
 
 const Stack = createStackNavigator()
 
@@ -180,45 +183,39 @@ const ShopNavigator = () => {
         )
     }
 
+    const Drawer = createDrawerNavigator()
+
     return (
-        <NavigationContainer>
-            <Stack.Navigator
-                // screenOptions={defaultNavOptions}
-                initialRouteName="SplashScreen"
-            >
-                <Stack.Screen
-                    name="SplashScreen"
-                    component={SplashScreen}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="SignInScreen"
-                    component={SignInScreen}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="AuthScreen"
-                    component={AuthScreen}
-                    options={{
-                        headerTitle: 'Authentication',
-                        defaultNavOptions,
-                    }}
-                />
-                <Stack.Screen
-                    name="ProductOverview"
-                    component={ProductOverview}
-                    options={{
-                        headerTitle: 'All Products',
-                        defaultNavOptions,
-                    }}
-                />
-                <Stack.Screen
-                    name="ProductDetailScreen"
-                    component={ProductDetailScreen}
-                />
-                <Stack.Screen name="CartScreen" component={CartScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <PaperProvider theme={theme}>
+            <AuthContext.Provider value={authContext}>
+                <NavigationContainer theme={theme}>
+                    <Drawer.Navigator
+                        drawerContent={(props) => <DrawerContent {...props} />}
+                    >
+                        {loginState.userToken !== null ? (
+                            <>
+                                <Drawer.Screen
+                                    name="ShopScreen"
+                                    options={{ headerShown: false }}
+                                    component={ShopScreen}
+                                />
+                                {/* <Drawer.Screen
+                                    name="ShopDrawerScreen"
+                                    options={{ headerShown: false }}
+                                    component={ShopDrawerScreen}
+                                /> */}
+                            </>
+                        ) : (
+                            <Drawer.Screen
+                                name="RootStackScreen"
+                                options={{ headerShown: false }}
+                                component={RootStackScreen}
+                            />
+                        )}
+                    </Drawer.Navigator>
+                </NavigationContainer>
+            </AuthContext.Provider>
+        </PaperProvider>
     )
 }
 
