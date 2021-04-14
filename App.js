@@ -3,6 +3,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import productsReducer from './store/reducers/products'
 import ShopNavigator from './navigation/ShopNavigator'
+import OrderNavigator from './navigation/OrderNavigator'
 
 import { AppLoading } from 'expo'
 import * as Font from 'expo-font'
@@ -10,9 +11,14 @@ import cartReducer from './store/reducers/cart'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider as PaperProvider } from 'react-native-paper'
 import thunk from 'redux-thunk'
+
+//steven
+import orderReducer from './store/reducers/order'
+//end 
 const rootReducer = combineReducers({
     products: productsReducer,
     cart: cartReducer,
+    order: orderReducer
 })
 
 const middleware = [thunk]
@@ -46,7 +52,7 @@ const App = () => {
     return (
         <Provider store={store}>
             <PaperProvider>
-                <ShopNavigator />
+                <OrderNavigator />
             </PaperProvider>
         </Provider>
     )
