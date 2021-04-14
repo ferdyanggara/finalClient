@@ -16,7 +16,7 @@ const OrderListScreen = ({navigation}) => {
                 return (
                     <HeaderButton
                         title="truck"
-                        iconName="truck"
+                        iconName="refresh"
                         action={()=> console.log("yes")}
                     ></HeaderButton>
                 )
@@ -27,14 +27,9 @@ const OrderListScreen = ({navigation}) => {
     const orderData = useSelector((state)=> state.order);
     const dispatch = useDispatch();
 
-    const updateOrder = (id, price) => {
-        console.log("DSKJHKSJDHKJSDHKJSDH",price); 
-        if(isNaN(price)){
-            dispatch(orderActions.editMenu(id, 0))
-        }
-        else dispatch(orderActions.editMenu(id, price));
-    }
-
+    useEffect(() => {
+        console.log(orderData);
+    }, [orderData])
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
@@ -64,12 +59,14 @@ const OrderListScreen = ({navigation}) => {
             style={styles.list}
             data={orderData.order}
             renderItem={(itemData)=>{
+                console.log(orderData)
                 return(<OrderBar 
                     itemId = {itemData.item.order.itemId}
-                    actualPrice = {itemData.item.actualPrice}
+                    actualPrice = {itemData.item.order.actualPrice}
                     price ={itemData.item.order.price}
                     amount = {itemData.item.order.amount}
                     updatePrice={(value) => {
+                        console.log(value)
                         if(isNaN(parseFloat(value))){
                             dispatch(orderActions.editMenu(itemData.item.order._id, 0));
                         }

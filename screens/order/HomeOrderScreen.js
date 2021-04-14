@@ -38,10 +38,15 @@ const OrderOverviewScreen = ({ navigation }) => {
     const [check, setCheck] = useState(false)
     const [getter, setGetter] = useState("Havent")
 
-    const checkJob = () => {
+    const checkJob = async () => {
     //insert axios cal
-    // const result = await  axios.get('/user?ID=12345').then(value => setGetter("ok")).catch(err=> setGetter("no"));
-        const data ={
+        let success = false;
+        // const result = await  axios.get('http://localhost:5000/employee/order', {
+        // params: {
+        //     employeeId: "60759340913c1765b800a079"
+        // }
+        // });
+        const result ={
             _id:"6075e0e315b20c4eb8531ad8",
             batchOrderIds:["6075e08f316f055070fe5554",
             "6075e0c964ef7729f4892675","6075e0dd15b20c4eb8531ad4"],
@@ -98,25 +103,29 @@ const OrderOverviewScreen = ({ navigation }) => {
                                 storeId:"607594c4b77037675c395cff",
                                 category:"fruit"}],
             employeeId:"60759340913c1765b800a079"}
-
-        dispatch(orderActions.addMenu(data.employeeId, data.district, data.batchOrderIds, data.employeeList))
+        if(result !== undefined) success = true;
+        if(success){
+        // dispatch(orderActions.addMenu(result.data.data._id, "60759340913c1765b800a079" ,result.data.data.district, result.data.data.batchOrderIds, result.data.data.employeeList))
+        dispatch(orderActions.addMenu(result._id, result.employeeId, result.district, result.batchOrderIds, result.employeeList))
         setTimeout(() => {  navigation.navigate('order'); }, 1);
+        }
+        console.log(result);
         setCheck(true)
     }
 
     const iconSelection = () => {
+        console.log("ENTER", orderData);
         if(!check) return(<FontAwesome style={styles.icon} name="search" size={170} color="black" />)
-        if(orderData.order.length === 0) {
+        if(!orderData.active) {
             return(<Entypo style={styles.icon} name="circle-with-cross" size={170} color="red" />)
         }
-        return(<AntDesign style={styles.icon} name="checkcircle" size={170} color="black" />)
+        return(<AntDesign style={styles.icon} name="checkcircle" size={170} color="green" />)
     }
 
     return (
             <View style={{ flex: 1, flexGrow:1, marginTop: '5px', flex:'column', alignItems: 'center', justifyContent:"center" }}>
                 {iconSelection()}
                 <Text style={styles.textMessage}>{orderData.district} </Text>
-                {/* <OrderBar/> */}
             </View>
     )
 }

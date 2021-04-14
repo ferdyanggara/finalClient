@@ -7,6 +7,7 @@ import * as orderActions from '../../store/actions/order'
 
 
 const OrderBar = ({itemId, actualPrice, price, amount, updatePrice}) => {   
+    console.log(itemId, actualPrice, price, amount, updatePrice);
     return (
         <View style={styles.container}>
             <FontAwesome5 name="shopping-bag" size={20} color="black" />
@@ -22,6 +23,8 @@ const OrderBar = ({itemId, actualPrice, price, amount, updatePrice}) => {
             value={actualPrice}
             keyboardType = 'numeric'
             onChangeText = {updatePrice}
+            onPressOut={()=>{console.log("PRESSOUT")}}
+            onEndEditing={()=>{console.log("aedOUT")}}
             />
         </View>
     )
