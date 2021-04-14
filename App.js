@@ -52,7 +52,7 @@ const App = () => {
     return (
         <Provider store={store}>
             <PaperProvider>
-                <OrderNavigator />
+                <OrderNavigator/>
             </PaperProvider>
         </Provider>
     )

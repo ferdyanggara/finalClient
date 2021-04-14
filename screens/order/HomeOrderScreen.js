@@ -41,72 +41,13 @@ const OrderOverviewScreen = ({ navigation }) => {
     const checkJob = async () => {
     //insert axios cal
         let success = false;
-        // const result = await  axios.get('http://localhost:5000/employee/order', {
-        // params: {
-        //     employeeId: "60759340913c1765b800a079"
-        // }
-        // });
-        const result ={
-            _id:"6075e0e315b20c4eb8531ad8",
-            batchOrderIds:["6075e08f316f055070fe5554",
-            "6075e0c964ef7729f4892675","6075e0dd15b20c4eb8531ad4"],
-            status:"solved",
-            district:"Mongkok",
-            employeeList:[{
-                _id:"6075e0e315b20c4eb8531ad9",
-                itemId:"apple",
-                amount:15,
-                type:"discrete",
-                district:"Mongkok",
-                price:25,
-                employeeId:"60759340913c1765b800a079",
-                storeId:"607594c4b77037675c395cff",
-                category:"fruit"},
-                {
-                    _id:"6075e0e315b20c4eb8531ad9",
-                    itemId:"apple",
-                    amount:15,
-                    type:"discrete",
-                    district:"Mongkok",
-                    price:25,
-                    employeeId:"60759340913c1765b800a079",
-                    storeId:"607594c4b77037675c395cff",
-                    category:"fruit"},
-                    {
-                        _id:"6075e0e315b20c4eb8531ad9",
-                        itemId:"apple",
-                        amount:15,
-                        type:"discrete",
-                        district:"Mongkok",
-                        price:25,
-                        employeeId:"60759340913c1765b800a079",
-                        storeId:"607594c4b77037675c395cff",
-                        category:"fruit"},
-                        {
-                            _id:"6075e0e315b20c4eb8531ad9",
-                            itemId:"apple",
-                            amount:15,
-                            type:"discrete",
-                            district:"Mongkok",
-                            price:25,
-                            employeeId:"60759340913c1765b800a079",
-                            storeId:"607594c4b77037675c395cff",
-                            category:"fruit"},
-                            {
-                                _id:"6075e0e315b20c4eb8531ad9",
-                                itemId:"apple",
-                                amount:15,
-                                type:"discrete",
-                                district:"Mongkok",
-                                price:25,
-                                employeeId:"60759340913c1765b800a079",
-                                storeId:"607594c4b77037675c395cff",
-                                category:"fruit"}],
-            employeeId:"60759340913c1765b800a079"}
+        const result = await  axios.get('http://10.89.161.2:5000/employee/order', {
+        params: {
+            employeeId: "6075e0e815b20c4eb8531adc"
+        }});
         if(result !== undefined) success = true;
         if(success){
-        // dispatch(orderActions.addMenu(result.data.data._id, "60759340913c1765b800a079" ,result.data.data.district, result.data.data.batchOrderIds, result.data.data.employeeList))
-        dispatch(orderActions.addMenu(result._id, result.employeeId, result.district, result.batchOrderIds, result.employeeList))
+        dispatch(orderActions.addMenu(result.data.data._id, result.data.data.employeeId ,result.data.data.district, result.data.data.batchOrderIds, result.data.data.employeeList))
         setTimeout(() => {  navigation.navigate('order'); }, 1);
         }
         console.log(result);
@@ -126,7 +67,9 @@ const OrderOverviewScreen = ({ navigation }) => {
             <View style={{ flex: 1, flexGrow:1, marginTop: '5px', flex:'column', alignItems: 'center', justifyContent:"center" }}>
                 {iconSelection()}
                 <Text style={styles.textMessage}>{orderData.district} </Text>
+                <Button onPress={()=>dispatch(orderActions.deleteMenu("6075e0e815b20c4eb8531adc"))} title="Learn More"/>
             </View>
+            
     )
 }
 

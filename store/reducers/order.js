@@ -6,8 +6,9 @@ const initialState = {
     _id: "",
     active : false,
     district : "none",
-    order : [],
+    employeeList : [],
 }
+
 
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -29,11 +30,11 @@ export default (state = initialState, action) => {
                 employeeList)
             let data = []
             console.log(menu.employeeList,"KJFDHGSKJHGF")
+            console.log(menu.employeeList.length, "LENGTTTTTTTH")
             for(let i = 0; i < menu.employeeList.length; i++){
                 let format = {
                     id : i,
-                    order : menu.employeeList[i],
-                    actualPrice : 0
+                    ...menu.employeeList[i]
                 }
                 data.push(format);
             } 
@@ -42,28 +43,48 @@ export default (state = initialState, action) => {
                 active : true,
                 _id : _id,
                 district : menu.district,
-                order : data
+                employeeList : data
             }
         case EDIT_MENU:
-            console.log(action.price)
-            console.log(state.order)
-            const editMenu = state.order.map(value => {
-                if(value.order._id === action.id){
-                    return ({
+            // console.log(state.employeeList)
+            console.log(action, 'hgkrdughk')
+            
+            let newData = []
+            let sendData = state.employeeList.map( value => {
+                console.log(value, 'value')
+                if(action.id === value._id){
+                    let updated = {
                         ...value,
-                        actualPrice : action.price
+                        price : action.price
+                    }
+                    console.log(updated, 'sdf')
+                    newData.push(updated);
+                    return({
+                        ...updated
                     })
                 }
-                else return value;})
-                const result = axios.post('http://localhost:5000/employee/add', {
-                    employeeOrderId: state._id,
-                    employeeList: editMenu
-                  })
-                console.log("finsihed saving?")
+                else{
+                    newData.push(value)
+                    return (value)
+                }
+            })
+
+            console.log(newData, sendData)
+
+            axios.post('http://10.89.161.2:5000/employee/add', {
+                employeeOrderId : state._id,
+                employeeList : sendData
+            }).catch(e => console.log(e));
+            //axios call
             return({
                 ...state,
-                order : editMenu
+                order : newData
             })
+        case DELETE_MENU:
+            axios.post('http://10.89.161.2:5000/employee/solve',  {
+                employeeOrderId : state.employeeOrderId
+            }, {method: 'POST', contentType : 'application/json', })
+            return initialState;
         default :
             return initialState;
     }

@@ -23,8 +23,9 @@ export const editMenu = (id, price) =>{
     })
 } 
 
-export const deleteMenu = () => {
+export const deleteMenu = (employeeOrderId) => {
     return ({
-        type : DELETE_MENU
+        type : DELETE_MENU,
+        employeeOrderId :employeeOrderId
     })
 }

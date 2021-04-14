@@ -16,7 +16,7 @@ const CustomHeaderButton = ({ iconName, action }) => {
         // />
         <TouchableOpacity onPress={action}>
             <View>
-                <FontAwesome
+                <Ionicons
                     name={iconName}
                     size={23}
                     color={Platform.OS === 'android' ? 'white' : Colors.primary}

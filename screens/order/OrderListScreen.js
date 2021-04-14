@@ -57,20 +57,19 @@ const OrderListScreen = ({navigation}) => {
                 margin : 20,
             }}  
             style={styles.list}
-            data={orderData.order}
+            data={orderData.employeeList}
             renderItem={(itemData)=>{
-                console.log(orderData)
+                console.log(itemData,'bhjvgh')
                 return(<OrderBar 
-                    itemId = {itemData.item.order.itemId}
-                    actualPrice = {itemData.item.order.actualPrice}
-                    price ={itemData.item.order.price}
-                    amount = {itemData.item.order.amount}
+                    itemId = {itemData.item.itemId}
+                    price ={itemData.item.price}
+                    amount = {itemData.item.amount}
                     updatePrice={(value) => {
                         console.log(value)
                         if(isNaN(parseFloat(value))){
-                            dispatch(orderActions.editMenu(itemData.item.order._id, 0));
+                            dispatch(orderActions.editMenu(itemData.item._id, 0));
                         }
-                        else dispatch(orderActions.editMenu(itemData.item.order._id, parseFloat(value)));
+                        else dispatch(orderActions.editMenu(itemData.item._id, parseFloat(value)));
                     }}
                     />)
             }}
