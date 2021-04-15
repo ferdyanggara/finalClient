@@ -22,7 +22,7 @@ const OrderBar = ({itemId, price, amount, targetPrice, updatePrice}) => {
             style={styles.input} 
             value={price}
             keyboardType = 'numeric'
-            onEndEditing = {updatePrice}
+            onChangeText = {updatePrice}
             />
         </View>
     )

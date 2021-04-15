@@ -26,7 +26,6 @@ const OrderListScreen = ({navigation}) => {
 
     const orderData = useSelector((state)=> state.order);
     
-    const [price, setPrice] = useState([])
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
