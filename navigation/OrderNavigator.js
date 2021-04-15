@@ -6,6 +6,7 @@ import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
 import HomeOrder from "../screens/order/HomeOrderScreen"
 import OrderList from "../screens/order/OrderListScreen"
+import TotalOrder from '../screens/order/TotalOrderListScreen'
 
 // import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
@@ -29,7 +30,7 @@ const OrderNavigator = () => {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={defaultNavOptions}
-                initialRouteName="HomeOrder"
+                initialRouteName="home"
             >
                 <Stack.Screen
                     name="home"
@@ -43,6 +44,13 @@ const OrderNavigator = () => {
                     component={OrderList}
                     options={{
                         headerTitle: 'Grocery List',
+                    }}
+                />
+                <Stack.Screen
+                    name="total"
+                    component={TotalOrder}
+                    options={{
+                        headerTitle: 'done',
                     }}
                 />
             </Stack.Navigator>
