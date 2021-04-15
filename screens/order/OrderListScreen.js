@@ -25,11 +25,10 @@ const OrderListScreen = ({navigation}) => {
     }, [navigation])
 
     const orderData = useSelector((state)=> state.order);
+    
+    const [price, setPrice] = useState([])
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log(orderData);
-    }, [orderData])
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
@@ -40,7 +39,7 @@ const OrderListScreen = ({navigation}) => {
                             Platform.OS === 'android' ? 'md-cart' : 'ios-cart'
                         }
                         action={() => {
-                            navigation.navigate('CartScreen')
+                            navigation.navigate('total')
                         }}
                     ></HeaderButton>
                 )
@@ -54,15 +53,16 @@ const OrderListScreen = ({navigation}) => {
         <View style={styles.screen}>
             <FlatList 
             contentContainerStyle={{
-                margin : 20,
+                margin : 20
             }}  
             style={styles.list}
             data={orderData.employeeList}
             renderItem={(itemData)=>{
-                console.log(itemData,'bhjvgh')
+                console.log(itemData,'per item', itemData.item.id)
                 return(<OrderBar 
                     itemId = {itemData.item.itemId}
                     price ={itemData.item.price}
+                    targetPrice = {itemData.item.targetPrice}
                     amount = {itemData.item.amount}
                     updatePrice={(value) => {
                         console.log(value)

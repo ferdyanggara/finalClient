@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
 import ShopScreen from '../screens/shop/ShopScreen'
+import OrderScreen from '../screens/order/OrderScreen'
 import DrawerContent from '../screens/shop/DrawerContent'
 
 // import AuthScreen from '../screens/user/AuthScreen'
@@ -195,9 +196,9 @@ const ShopNavigator = () => {
                         {loginState.userToken !== null ? (
                             <>
                                 <Drawer.Screen
-                                    name="ShopScreen"
+                                    name="order screen"
                                     options={{ headerShown: false }}
-                                    component={ShopScreen}
+                                    component={OrderScreen}
                                 />
                                 {/* <Drawer.Screen
                                     name="ShopDrawerScreen"

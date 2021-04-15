@@ -69,8 +69,8 @@ const ProductOverviewScreen = ({ navigation }) => {
     }
 
     return (
-        <div>
-            <View style={{ flex: 1, marginTop: '5px' }}>
+        <View>
+            <View style={{ flex: 1, marginTop: 5 }}>
                 <FlatList
                     contentContainerStyle={{
                         flexGrow: 1,
@@ -122,8 +122,7 @@ const ProductOverviewScreen = ({ navigation }) => {
                         ></ProductItem>
                     )
                 }}
-            />
-        </div>
+            /></View>
     )
 }
 

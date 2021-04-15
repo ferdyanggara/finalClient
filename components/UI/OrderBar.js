@@ -6,25 +6,23 @@ import * as orderActions from '../../store/actions/order'
 
 
 
-const OrderBar = ({itemId, actualPrice, price, amount, updatePrice}) => {   
-    console.log(itemId, actualPrice, price, amount, updatePrice);
+const OrderBar = ({itemId, price, amount, targetPrice, updatePrice}) => {   
+    console.log(itemId, price, amount, targetPrice);
     return (
         <View style={styles.container}>
             <FontAwesome5 name="shopping-bag" size={20} color="black" />
             <View style={styles.middle}>
                 <View style={styles.middleTop}>
                     <Text style={{fontSize: 22, fontWeight: "700"}} >{itemId}</Text>
-                    <Text>Expected :{price} Item :{amount}</Text>
+                    <Text>Expected :{targetPrice} Item :{amount}</Text>
                 </View>
                 
             </View>
             <TextInput 
             style={styles.input} 
-            value={actualPrice}
+            value={price}
             keyboardType = 'numeric'
-            onChangeText = {updatePrice}
-            onPressOut={()=>{console.log("PRESSOUT")}}
-            onEndEditing={()=>{console.log("aedOUT")}}
+            onEndEditing = {updatePrice}
             />
         </View>
     )
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
     },
     middle :{
         height: '100%',
-        alignItems : 'left',
+        alignItems : 'flex-end',
         justifyContent :'space-evenly',
         alignSelf: 'flex-start'
     },

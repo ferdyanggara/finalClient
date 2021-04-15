@@ -7,7 +7,6 @@ import HeaderButton from '../../components/UI/HeaderButton'
 import { Button } from 'react-native-paper'
 import {UIActivityIndicator} from 'react-native-indicators'
 
-import LottieView from 'lottie-react-native'
 //border
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -18,6 +17,10 @@ import axios from 'axios'
 const loading = '../../assets/lottie/loading.json';
 const cross = '../../assets/lottie/cross.json';
 const check = '../../assets/lottie/check.json'
+
+const searchText = "Searching..."
+const falseText = "Orders not found! Please try again"
+const trueText = "Order found! Directing..."
 
 const OrderOverviewScreen = ({ navigation }) => {
     useLayoutEffect(() => {
@@ -43,17 +46,19 @@ const OrderOverviewScreen = ({ navigation }) => {
     const checkJob = async () => {
     //insert axios cal
         setStatus(true);
-        const result = axios.get('http://localhost:5000/employee/order', {
+        const result = await axios.get('http://10.89.161.2:5000/employee/order', {
             params: {
                 employeeId: "6075e0e815b20c4eb8531adc"
             }}).then(result => {
+                console.log("yes")
                 setStatus(false);
                 dispatch(orderActions.addMenu(result.data.data._id, result.data.data.employeeId ,result.data.data.district, result.data.data.batchOrderIds, result.data.data.employeeList));
+                navigation.navigate('order')
             }).catch(err => {
+                console.log("false")
                 setStatus(false);
                 console.log(err);
             });
-        console.log(status)
         setCheck(true);
     }
 
@@ -63,12 +68,12 @@ const OrderOverviewScreen = ({ navigation }) => {
         if(!orderData.active) {
             return(<Entypo style={styles.icon} name="circle-with-cross" size={170} color="red" />)
         }
-        return(<AntDesign style={styles.icon} name="checkcircle" size={170} color="green" />)
+        return(<AntDesign style={styles.icon} name="cheadckcircle" size={170} color="green" />)
     }
 
     return (
-            <View style={{ flex: 1, flexGrow:1, marginTop: '5px', flex:'column', alignItems: 'center', justifyContent:"center" }}>
-                {status?  <UIActivityIndicator style={{height : 100, width : 100}}/>: iconSelection()}
+            <View style={{ flex: 1, flexGrow:1, marginTop: 5, alignItems: 'center', justifyContent:"center" }}>
+                {status?  <ActivityIndicator size="large" />: iconSelection()}
                 <Text style={styles.textMessage}>{orderData.district} </Text>
             </View>
             

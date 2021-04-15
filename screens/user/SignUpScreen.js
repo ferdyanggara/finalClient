@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
         paddingBottom: 50,
     },
     footer: {
-        flex: Platform.OS === 'ios' ? 3 : 5,
+        // flex: Platform.OS === 'ios' ? 3 : 5,
         backgroundColor: '#fff',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
