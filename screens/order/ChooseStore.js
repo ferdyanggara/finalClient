@@ -1,11 +1,11 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
 import HeaderButton from '../../components/UI/HeaderButton'
-import {View, Text, FlatList, StyleSheet, Button} from 'react-native'
+import {View, Text, FlatList, StyleSheet, Button, TouchableOpacity} from 'react-native'
 import {useSelector, useDispatch} from 'react-redux'
 import * as orderActions from '../../store/actions/order';
 import order from '../../store/reducers/order';
 
-const TotalOrderListScreen = ({navigation}) => {
+const ChooseStore = ({navigation}) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
@@ -19,28 +19,14 @@ const TotalOrderListScreen = ({navigation}) => {
         })
     }, [navigation])
 
-    const data = [{
-      id : 1,
-      itemId : "cabbage",
-      price : 10
-    },
-    {
-      id : 2,
-      itemId : "asd",
-      price : 351
-    },
-    {
-      id : 3,
-      itemId : "kajshd",
-      price : 54451
-    },
-  ]
+    const data =[
+        {key: 1, data: "Store A"},
+        {key : 2, data: 'Store B'}
+      ]
 
-  
   let total = 0
-  
+  data.forEach(value => total += value.price)
   const orderData = useSelector((state) => state.order) //later
-  orderData.employeeList.forEach(value => total += value.price)
    const accept = () => {
      //call only the dispatch and shit
     //  dispatch(orderActions.deleteMenu("asfkj"))//insert hardcorde
@@ -48,45 +34,29 @@ const TotalOrderListScreen = ({navigation}) => {
    }
       
     return (
-        <View style={{flex : 1, justifyContent:'space-between'}}>
+        <View style={{flex : 1, justifyContent:'flex-start'}}>
             <View style={styles.title}>
-                <Text style={{fontSize:60, fontWeight: "700", marginLeft : 20, marginTop : 20}}>Total</Text>
+                <Text style={{fontSize:60, fontWeight: "700", marginLeft : 20, marginTop : 20}}>Select Store</Text>
             </View>
-            <View>
-                <FlatList 
+            <FlatList 
                 contentContainerStyle={{
                     margin : 10,
                 }}  
-                data={orderData.employeeList} 
-                renderItem={ListCard}
+                data={data} 
+                renderItem={(value)=>{
+                  return(
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={()=>{navigation.goBack()}}
+                      >
+                    <View style={styles.itemList}>
+                        <Text style={styles.itemTitle}>{value.item.data}</Text>
+                    </View>
+                    </TouchableOpacity>
+                    )
+                }}
                 keyExtractor={item => item.key}
                 />
-            </View>
-            <View>
-              <View style={{width:"90%", alignSelf:'center',height: 1, borderRadius:10, borderColor:'grey', borderWidth: 3}}/>
-            <View style={styles.bottom}>
-              <View style={{paddingRight : 50}}>
-              <Text style={{fontSize :30, fontWeight: "700",textAlign : 'left'}}>TOTAL</Text>
-              </View>
-              <Text style={{fontSize: 20, textAlign: 'right', paddingRight :10, paddingleft :30}}>{total} HKD</Text>
-            </View>
-            <Button
-            style={styles.accept}
-                onPress={accept}
-              title="Accept"
-              color="green"
-              accessibilityLabel="Learn more about this purple button"
-            />
-            </View>
-    </View>
-    )
-}
-
-const ListCard = ({item}) => {
-    return(
-    <View style={styles.itemList}>
-        <Text style={styles.itemTitle}>{item.itemId}</Text>
-        <Text style={styles.itemValue}>{item.price} HKD</Text>
     </View>
     )
 }
@@ -130,4 +100,4 @@ const styles = StyleSheet.create({
     }
 
   })
-export default TotalOrderListScreen
+export default ChooseStore

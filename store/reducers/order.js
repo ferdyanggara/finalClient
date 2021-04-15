@@ -52,7 +52,6 @@ export default (state = initialState, action) => {
             console.log("EDIT", state.employeeList)
             console.log("CHECK", action.price, action.id)
             const sendData = state.employeeList.map( value => {
-
                 if(action.id === value._id){
                     let updated = {
                         ...value,

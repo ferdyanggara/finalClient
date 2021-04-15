@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { Text, Platform, View, FlatList,StyleSheet, StatusBar } from 'react-native'
+import { Text, Platform, View, FlatList,StyleSheet, Button } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import HeaderButton from '../../components/UI/HeaderButton'
 import order from '../../store/reducers/order'
@@ -46,7 +46,9 @@ const OrderListScreen = ({navigation}) => {
         })
     }, [navigation])
 
-    
+    const goBack = () => {
+        navigation.navigate("store")
+    }
 
     return (
         <View style={styles.screen}>
@@ -63,6 +65,7 @@ const OrderListScreen = ({navigation}) => {
                     price ={itemData.item.price}
                     targetPrice = {itemData.item.targetPrice}
                     amount = {itemData.item.amount}
+                    store ={goBack}
                     updatePrice={(value) => {
                         console.log(value)
                         if(isNaN(parseFloat(value))){
@@ -73,7 +76,6 @@ const OrderListScreen = ({navigation}) => {
                     />)
             }}
             keyExtractor={(item)=>item.id.toString()}/>
-            <Text>{orderData.district}</Text>
         </View>
     )
 

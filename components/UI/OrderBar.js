@@ -1,16 +1,21 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { Text, Platform, View, FlatList,StyleSheet, TextInput } from 'react-native'
+import { Text, Platform, View, FlatList,StyleSheet, TextInput, Pressable } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux'
 import * as orderActions from '../../store/actions/order'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
-const OrderBar = ({itemId, price, amount, targetPrice, updatePrice}) => {   
+const OrderBar = ({itemId, price, amount, targetPrice, updatePrice, store}) => {   
     console.log(itemId, price, amount, targetPrice);
     return (
         <View style={styles.container}>
-            <FontAwesome5 name="shopping-bag" size={20} color="black" />
+            <Pressable onPress={store}>
+
+            <FontAwesome5 name="shopping-bag" size={30} color="black" />
+            </Pressable>
+            
             <View style={styles.middle}>
                 <View style={styles.middleTop}>
                     <Text style={{fontSize: 22, fontWeight: "700"}} >{itemId}</Text>

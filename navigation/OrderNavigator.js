@@ -7,6 +7,7 @@ import Colors from '../constants/Colors'
 import HomeOrder from "../screens/order/HomeOrderScreen"
 import OrderList from "../screens/order/OrderListScreen"
 import TotalOrder from '../screens/order/TotalOrderListScreen'
+import ChooseStore from "../screens/order/ChooseStore"
 
 // import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
@@ -50,7 +51,14 @@ const OrderNavigator = () => {
                     name="total"
                     component={TotalOrder}
                     options={{
-                        headerTitle: 'done',
+                        headerTitle: 'Receipt',
+                    }}
+                />
+                <Stack.Screen
+                    name="store"
+                    component={ChooseStore}
+                    options={{
+                        headerTitle: 'Location',
                     }}
                 />
             </Stack.Navigator>
