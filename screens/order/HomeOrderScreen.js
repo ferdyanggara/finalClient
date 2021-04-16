@@ -1,10 +1,13 @@
 
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { Text, ActivityIndicator, View, StyleSheet, Image, Pressable, Alert } from 'react-native'
+import { Text, ActivityIndicator, View, StyleSheet, Image, Pressable, Alert, ImageBackground, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import HeaderButton from '../../components/UI/HeaderButton'  
 import Card from '../../components/UI/Card'
 
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+
+import { AntDesign } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -143,56 +146,248 @@ const OrderOverviewScreen = ({ navigation }) => {
     );
 
     return (
-            <View style={{flex : 1, padding : 20}}>
-                <View styles={{flex : 1, flexDirection:'column'}}>
-                    <View style={styles.headerView}>
-                        <Text style={styles.header}>Hello Diana</Text>
-                        <Text style={{fontSize: 15, fontWeight: '500'}}>{"Here's today report"}</Text>
-                </View>
-                        
-                    <View style={{flexDirection:'row', justifyContent:"space-evenly"}}>
-                    <Pressable >
-                        <View style={styles.box}>
-                        <View style={{flex : 1, padding : 20}}>
-                            <Text style={styles.boxTitle}>Orders</Text>
-                        </View>
-                            <View style={{flexDirection: 'row', flex: 1, justifyContent : 'space-evenly'}}>
-                                <Text style={{fontSize:25}}>123</Text>
-                                <Ionicons name="receipt" size={24} color="black" />
-                            </View>
-                        </View>
-                    </Pressable>
-                    <Pressable >
-                        <View style={styles.box}>
-                        <View style={{flex : 1, padding : 20}}>
-                            <Text style={styles.boxTitle}>Money</Text>
-                        </View>
-                            <View style={{flexDirection: 'row', flex: 1, justifyContent : 'space-evenly'}}>
-                                <Text style={{fontSize:20}}>123 HKD</Text>
-                                <FontAwesome5 name="money-bill-wave-alt" size={24} color="black" />
-                            </View>
-                        </View>
-                    </Pressable>
-                    </View>
-                    <View style={styles.bottomCard}>
-                    <MaterialIcons name="explore" size={45} color="black" style={{paddingRight: 10}} />
-                    <Text style={{fontSize:50, fontWeight:'500'}}>Explore</Text>
-                    </View>
+        <ImageBackground
+        source={require("../../assets/1080ppi/background.png")}
+        style={{ width: "100%", height: "100%" }}
+      >
 
-                    <Pressable style={styles.bottomSearch} onPress={checkJob}>
-                    <View >
-                    {status?  <ActivityIndicator size="large" />: iconSelection()}
-                    </View>
-                    </Pressable>
-                </View>
-                {/* <View style={styles.headerView}>
-                    <Text style={styles.header}>Hello Diana</Text>
-                    <Text style={{fontSize: 15, fontWeight: '500'}}>{"Here's today report"}</             Text>
-                </View>
-                {status?  <ActivityIndicator size="large" />: iconSelection()}
-                <Text style={styles.textMessage}>{orderData.district} </Text>
-                 */}
+
+        <View style={{ paddingHorizontal: 40, marginTop: 25 }}>
+          <Text
+            style={{
+              fontSize: 40,
+              fontWeight: '700',
+            }}
+          >
+            Hello Linda,
+          </Text>
+
+          <Text
+            style={{
+              fontSize: 15,
+              paddingVertical: 10,
+              paddingRight: 80,
+              lineHeight: 22,
+            }}
+          >
+            Here's today report
+          </Text>
+
+          <View
+            style={{
+              flexDirection: "row",
+              backgroundColor: "#FFF",
+              borderRadius: 40,
+              alignItems: "center",
+              justifyContent : 'space-evenly',
+              paddingVertical: 10,
+              paddingHorizontal: 20,
+              marginTop: 30,
+            }}
+          >
+              <View style={{
+                height :"100%",
+                backgroundColor:"white",
+                flexDirection: 'row' }}>
+                <Ionicons name="cash" size={20} color="black" />
+                <Text>Money : 50</Text>
+              </View>
+
+              <View style={{
+                height :"100%",
+                backgroundColor:"white",
+                flexDirection: 'row' }}>
+                <Ionicons name="receipt" size={18} color="black" />
+                <Text>Orders : 2</Text>
+              </View>
+
+              <View style={{
+                height :"100%",
+                backgroundColor:"white",
+                flexDirection: 'row' }}>
+                    <AntDesign name="star" size={20} color="black" />
+                <Text>Rating : 4.3</Text>
+              </View>
+          </View>
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginRight: -40, marginTop: 30 }}
+          >
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                height: 66,
+                width: 66,
+                borderRadius: 50,
+                backgroundColor: "#5facdb",
+              }}
+            >
+              <AntDesign name="wallet" size={24} color="black" />
+            </TouchableOpacity>
+
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                height: 66,
+                width: 66,
+                borderRadius: 50,
+                backgroundColor: "#ff5c83",
+                marginHorizontal: 22,
+              }}
+            >
+              <Icon name="office-building" color="white" size={32} />
             </View>
+
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                height: 66,
+                width: 66,
+                borderRadius: 50,
+                backgroundColor: "#ffa06c",
+              }}
+            >
+              <Icon name="bus" color="white" size={32} />
+            </View>
+
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                height: 66,
+                width: 66,
+                borderRadius: 50,
+                backgroundColor: "#bb32fe",
+                marginLeft: 22,
+              }}
+            >
+              <Icon name="dots-horizontal" color="white" size={32} />
+            </View>
+          </ScrollView>
+
+              <View style={{flexDirection : 'row', marginTop : 50}}>
+              <Icon name="map-marker" size={25}  />
+              <Text
+            style={{
+            marginleft : 20,
+              fontSize: 25,
+              fontWeight : '600'
+            }}
+          >
+            Recommended Markets
+          </Text>
+              </View>
+          
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginHorizontal: -40, marginTop: 30 }}
+          >
+            <View
+              style={{
+                backgroundColor: "#FEFEFE",
+                height: 200,
+                width: 190,
+                borderRadius: 15,
+                padding: 5,
+              }}
+            >
+              <Image
+                source={require("../../assets/images/market.jpg")}
+                style={{ width: 180, borderRadius: 10, height: 130 }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: 150,
+                  alignItems: "center",
+                }}
+              >
+                  <Text>Sai Kung market</Text>
+                <Icon name="map-marker" size={25} color="#5facdb"  style={{marginleft:10}}/>
+              </View>
+              <View style={{flexDirection:"row", justifyContent:"flex-start"}}>
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+           
+                
+              </View>
+            </View>
+
+            <View
+              style={{
+                backgroundColor: "#FEFEFE",
+                height: 200,
+                width: 190,
+                borderRadius: 15,
+                padding: 5,
+                marginHorizontal: 20,
+              }}
+            >
+              <Image
+                source={require("../../assets/images/market2.png")}
+                style={{ width: 180, borderRadius: 10, height: 130 }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: 150,
+                  alignItems: "center",
+                }}
+              >
+                <Text>Hang Hau market</Text>
+                <Icon name="map-marker" size={25} color="#5facdb"  style={{marginleft:10}}/>
+              </View>
+              <View style={{flexDirection:"row", justifyContent:"flex-start"}}>
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+              </View>
+            </View>
+
+            <View
+              style={{
+                backgroundColor: "#FEFEFE",
+                height: 200,
+                width: 190,
+                borderRadius: 15,
+                padding: 5,
+              }}
+            >
+              <Image
+                source={require("../../assets/images/market3.jpg")}
+                style={{ width: 180, borderRadius: 10, height: 130 }}
+              />
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: 150,
+                  alignItems: "center",
+                }}
+              >
+                <Text>Po Lam market</Text>
+                <Icon name="map-marker" size={25} color="#5facdb"  style={{marginleft:10}}/>
+              </View>
+              <View style={{flexDirection:"row", justifyContent:"flex-start"}}>
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+              <Ionicons name="star" size={18} color="black" />
+       
+              </View>
+            </View>
+          </ScrollView>
+        </View>
+      </ImageBackground>
             
     )
 }

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
 import HeaderButton from '../../components/UI/HeaderButton'
-import {View, Text, FlatList, StyleSheet, Button} from 'react-native'
+import {View, Text, FlatList, StyleSheet, Button, ImageBackground} from 'react-native'
 import {useSelector, useDispatch} from 'react-redux'
 import * as orderActions from '../../store/actions/order';
 import order from '../../store/reducers/order';
@@ -48,7 +48,7 @@ const TotalOrderListScreen = ({navigation}) => {
    }
       
     return (
-        <View style={{flex : 1, justifyContent:'space-between'}}>
+        <ImageBackground source={require("../../assets/1080ppi/background.png")}style={{flex : 1, justifyContent:'space-between'}}>
             <View style={styles.title}>
                 <Text style={{fontSize:60, fontWeight: "700", marginLeft : 20, marginTop : 20}}>Total</Text>
             </View>
@@ -63,7 +63,7 @@ const TotalOrderListScreen = ({navigation}) => {
                 />
             </View>
             <View>
-              <View style={{width:"90%", alignSelf:'center',height: 1, borderRadius:10, borderColor:'grey', borderWidth: 3}}/>
+              
             <View style={styles.bottom}>
               <View style={{paddingRight : 50}}>
               <Text style={{fontSize :30, fontWeight: "700",textAlign : 'left'}}>TOTAL</Text>
@@ -78,7 +78,7 @@ const TotalOrderListScreen = ({navigation}) => {
               accessibilityLabel="Learn more about this purple button"
             />
             </View>
-    </View>
+    </ImageBackground>
     )
 }
 

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
 import HeaderButton from '../../components/UI/HeaderButton'
-import {View, Text, FlatList, StyleSheet, Button, TouchableOpacity} from 'react-native'
+import {View, Text, FlatList, StyleSheet, Button, TouchableOpacity, ImageBackground} from 'react-native'
 import {useSelector, useDispatch} from 'react-redux'
 import * as orderActions from '../../store/actions/order';
 import order from '../../store/reducers/order';
@@ -34,7 +34,7 @@ const ChooseStore = ({navigation}) => {
    }
       
     return (
-        <View style={{flex : 1, justifyContent:'flex-start'}}>
+        <ImageBackground source={require("../../assets/1080ppi/background.png")} style={{flex : 1, justifyContent:'flex-start'}}>
             <View style={styles.title}>
                 <Text style={{fontSize:60, fontWeight: "700", marginLeft : 20, marginTop : 20}}>Select Store</Text>
             </View>
@@ -57,7 +57,7 @@ const ChooseStore = ({navigation}) => {
                 }}
                 keyExtractor={item => item.key}
                 />
-    </View>
+    </ImageBackground>
     )
 }
 

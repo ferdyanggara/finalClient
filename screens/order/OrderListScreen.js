@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useEffect, useState } from 'react'
-import { Text, Platform, View, FlatList,StyleSheet, Button } from 'react-native'
+import { Text, Platform, View, FlatList,StyleSheet, Button , ImageBackground} from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import HeaderButton from '../../components/UI/HeaderButton'
 import order from '../../store/reducers/order'
@@ -51,7 +51,7 @@ const OrderListScreen = ({navigation}) => {
     }
 
     return (
-        <View style={styles.screen}>
+        <ImageBackground source={require("../../assets/1080ppi/background.png")}style={styles.screen}>
             <FlatList 
             contentContainerStyle={{
                 margin : 20
@@ -76,7 +76,7 @@ const OrderListScreen = ({navigation}) => {
                     />)
             }}
             keyExtractor={(item)=>item.id.toString()}/>
-        </View>
+        </ImageBackground>
     )
 
    
