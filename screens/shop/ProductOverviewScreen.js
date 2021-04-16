@@ -29,28 +29,33 @@ const ProductOverviewScreen = ({ navigation }) => {
 
     const dispatch = useDispatch()
     const products = useSelector((state) => state.products.availableProducts)
-    console.log('products 1: ', products)
+    // console.log('products 1: ', products)
 
     const [productsToRender, setproductsToRender] = useState(products)
 
     const filterCategories = [
         {
+            key: 1,
             type: 'Fruits',
             color: 'orange',
         },
         {
+            key: 2,
             type: 'Veggies',
             color: 'green',
         },
         {
+            key: 3,
             type: 'Meat',
             color: 'red',
         },
         {
+            key: 4,
             type: 'Poultry',
             color: 'blue',
         },
         {
+            key: 5,
             type: 'All',
             color: 'black',
         },
@@ -58,25 +63,26 @@ const ProductOverviewScreen = ({ navigation }) => {
 
     const filterContent = (type) => {
         if (type === 'All') {
-            console.log('products: ', products)
+            console.log('products mine: ', products)
             setproductsToRender(products)
         } else {
             console.log('test', type)
             const result = products.filter((each) => each.type == type)
-            console.log('products:', result)
+            // console.log('products:', result)
             setproductsToRender(result)
         }
     }
 
     return (
-        <div>
-            <View style={{ flex: 1, marginTop: '5px' }}>
+        <>
+            <View style={{ flex: 1, marginTop: 5 }}>
                 <FlatList
                     contentContainerStyle={{
                         flexGrow: 1,
                         justifyContent: 'space-around',
                     }}
                     horizontal={true}
+                    keyExtractor={(item, index) => item.key}
                     data={filterCategories}
                     renderItem={(each) => {
                         return (
@@ -123,7 +129,7 @@ const ProductOverviewScreen = ({ navigation }) => {
                     )
                 }}
             />
-        </div>
+        </>
     )
 }
 

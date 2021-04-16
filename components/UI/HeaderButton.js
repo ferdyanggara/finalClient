@@ -14,14 +14,14 @@ const CustomHeaderButton = ({ iconName, action }) => {
         //     iconSize={23}
         //     color={Platform.OS === 'android' ? 'white' : Colors.primary}
         // />
-        <TouchableOpacity onPress={action}>
-            <View>
-                <Ionicons
-                    name={iconName}
-                    size={23}
-                    color={Platform.OS === 'android' ? 'white' : Colors.primary}
-                />
-            </View>
+        <TouchableOpacity onPress={action} style={{ marginHorizontal: 15 }}>
+            {/* <View> */}
+            <Ionicons
+                name={iconName}
+                size={23}
+                color={Platform.OS === 'android' ? 'red' : Colors.primary}
+            />
+            {/* </View> */}
         </TouchableOpacity>
     )
 }

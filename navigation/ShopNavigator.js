@@ -6,6 +6,9 @@ import { Platform } from 'react-native'
 import Colors from '../constants/Colors'
 import ShopScreen from '../screens/shop/ShopScreen'
 import DrawerContent from '../screens/shop/DrawerContent'
+import MapsScreen from '../screens/shop/MapsScreen'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import CartScreen from '../screens/shop/CartScreen'
 
 // import AuthScreen from '../screens/user/AuthScreen'
 
@@ -23,6 +26,7 @@ import {
 import RootStackScreen from '../screens/user/RootStackScreen'
 // import ShopDrawerScreen from '../screens/shop/DrawerScreen'
 import { createDrawerNavigator } from '@react-navigation/drawer'
+import AnimatedMarkers from '../screens/shop/test'
 
 // import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
@@ -199,11 +203,22 @@ const ShopNavigator = () => {
                                     options={{ headerShown: false }}
                                     component={ShopScreen}
                                 />
-                                {/* <Drawer.Screen
-                                    name="ShopDrawerScreen"
-                                    options={{ headerShown: false }}
-                                    component={ShopDrawerScreen}
-                                /> */}
+                                <Drawer.Screen
+                                    name="MapsScreen"
+                                    options={{
+                                        headerShown: true,
+                                        headerTitle: false,
+                                    }}
+                                    component={MapsScreen}
+                                />
+                                <Drawer.Screen
+                                    name="CartScreen"
+                                    options={{
+                                        headerShown: true,
+                                        headerTitle: false,
+                                    }}
+                                    component={CartScreen}
+                                />
                             </>
                         ) : (
                             <Drawer.Screen

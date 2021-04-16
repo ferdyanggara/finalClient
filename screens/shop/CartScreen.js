@@ -6,7 +6,7 @@ import * as cartActions from '../../store/actions/cart'
 import Colors from '../../constants/Colors'
 import CartItem from '../../components/shop/CartItem'
 
-const CartScreen = (props) => {
+const CartScreen = ({ navigation }) => {
     const dispatch = useDispatch()
     const cartTotalAmount = useSelector((state) => state.cart.totalAmount)
 
@@ -36,6 +36,9 @@ const CartScreen = (props) => {
                     </Text>
                 </Text>
                 <Button
+                    onPress={() => {
+                        navigation.navigate('MapsScreen')
+                    }}
                     color={Colors.accent}
                     title="Order Now"
                     disabled={cartItems.length === 0}
@@ -45,7 +48,7 @@ const CartScreen = (props) => {
                 data={cartItems}
                 keyExtractor={(item) => item.productId}
                 renderItem={(itemData) => {
-                    console.log('cart items: ', itemData)
+                    // console.log('cart items: ', itemData)
                     return (
                         <CartItem
                             quantity={itemData.item.quantity}

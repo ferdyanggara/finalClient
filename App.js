@@ -10,6 +10,7 @@ import cartReducer from './store/reducers/cart'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider as PaperProvider } from 'react-native-paper'
 import thunk from 'redux-thunk'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 const rootReducer = combineReducers({
     products: productsReducer,
     cart: cartReducer,
@@ -44,11 +45,13 @@ const App = () => {
     //     )
     // }
     return (
-        <Provider store={store}>
-            <PaperProvider>
-                <ShopNavigator />
-            </PaperProvider>
-        </Provider>
+        <SafeAreaProvider>
+            <Provider store={store}>
+                <PaperProvider>
+                    <ShopNavigator />
+                </PaperProvider>
+            </Provider>
+        </SafeAreaProvider>
     )
 }
 

@@ -4,8 +4,8 @@ const PRODUCTS = [
     new Product(
         'p1',
         'u1',
-        'Red Shirt',
-        'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+        'Fresh Grapes',
+        'https://ripe.london/wp-content/uploads/2017/11/grapes.jpg',
         'A red t-shirt, perfect for days with non-red weather.',
         29.99,
         'Poultry'
@@ -13,8 +13,8 @@ const PRODUCTS = [
     new Product(
         'p2',
         'u1',
-        'Blue Carpet',
-        'https://images.pexels.com/photos/6292/blue-pattern-texture-macro.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        'Dragon Fruit',
+        'https://avarietyoffruits.files.wordpress.com/2017/09/img_20170924_140604_833-e1506255029394.jpg',
         'Fits your red shirt perfectly. To stand on. Not to wear it.',
         99.99,
         'Meat'
@@ -22,8 +22,8 @@ const PRODUCTS = [
     new Product(
         'p3',
         'u2',
-        'Coffee Mug',
-        'https://images.pexels.com/photos/160834/coffee-cup-and-saucer-black-coffee-loose-coffee-beans-160834.jpeg?cs=srgb&dl=bean-beans-black-coffee-160834.jpg&fm=jpg',
+        'Banana',
+        'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-320-80.jpg ',
         'Can also be used for tea!',
         8.99,
         'Fruits'
@@ -31,8 +31,8 @@ const PRODUCTS = [
     new Product(
         'p4',
         'u3',
-        'The Book - Limited Edition',
-        'https://images.pexels.com/photos/46274/pexels-photo-46274.jpeg?cs=srgb&dl=blur-blurred-book-pages-46274.jpg&fm=jpg',
+        'Melon',
+        'https://static.libertyprim.com/files/familles/melon-large.jpg?1574629891',
         "What the content is? Why would that matter? It's a limited edition!",
         15.99,
         'Veggies'
@@ -40,17 +40,17 @@ const PRODUCTS = [
     new Product(
         'p5',
         'u3',
-        'PowerBook',
-        'https://get.pxhere.com/photo/laptop-computer-macbook-mac-screen-water-board-keyboard-technology-air-mouse-photo-airport-aircraft-tablet-aviation-office-black-monitor-keys-graphic-hardware-image-pc-exhibition-multimedia-calculator-vector-water-cooling-floppy-disk-phased-out-desktop-computer-netbook-personal-computer-computer-monitor-electronic-device-computer-hardware-display-device-448748.jpg',
+        'Sunkist',
+        'https://www.southstreammarket.com/upload/products/pbf049f6c41f24a5b9044b9e0e9798ba7.jpg?l=1604302957',
         'Awesome hardware, crappy keyboard and a hefty price. Buy now before a new one is released!',
-        2299.99,
+        100.99,
         'Veggies'
     ),
     new Product(
         'p6',
         'u1',
-        'Pen & Paper',
-        'https://cdn.pixabay.com/photo/2015/10/03/02/14/pen-969298_1280.jpg',
+        'Apple',
+        'https://5.imimg.com/data5/LM/DU/MY-22954806/apple-fruit-500x500.jpg',
         "Can be used for role-playing (not the kind of role-playing you're thinking about...).",
         5.49,
         'Veggies'

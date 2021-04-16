@@ -12,6 +12,7 @@ import * as Animatable from 'react-native-animatable'
 import { LinearGradient } from 'expo-linear-gradient'
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { Ionicons } from '@expo/vector-icons'
 import { useTheme } from '@react-navigation/native'
 
 const SplashScreen = ({ navigation }) => {

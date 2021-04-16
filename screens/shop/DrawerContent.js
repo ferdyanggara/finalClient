@@ -15,6 +15,7 @@ import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
+import { Ionicons } from '@expo/vector-icons'
 import { AuthContext } from '../../components/context'
 
 export default function DrawerContent(props) {
@@ -81,20 +82,20 @@ export default function DrawerContent(props) {
                             )}
                             label="Home"
                             onPress={() => {
-                                props.navigation.navigate('Home')
+                                props.navigation.navigate('ProductOverview')
                             }}
                         />
                         <DrawerItem
                             icon={({ color, size }) => (
                                 <Icon
-                                    name="account-outline"
+                                    name="google-maps"
                                     color={color}
                                     size={size}
                                 />
                             )}
-                            label="Profile"
+                            label="Track Order"
                             onPress={() => {
-                                props.navigation.navigate('Profile')
+                                props.navigation.navigate('MapsScreen')
                             }}
                         />
                         <DrawerItem
@@ -112,8 +113,8 @@ export default function DrawerContent(props) {
                         />
                         <DrawerItem
                             icon={({ color, size }) => (
-                                <Icon
-                                    name="settings-outline"
+                                <Ionicons
+                                    name="settings"
                                     color={color}
                                     size={size}
                                 />
